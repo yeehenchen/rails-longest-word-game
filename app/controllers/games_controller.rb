@@ -10,6 +10,7 @@ class GamesController < ApplicationController
   def score
     word_hash = Hash.new(0)
 
+    # get words from params as string
     words = params[:words]
     words.split(//).each { |w| word_hash[w] += 1 }
 
@@ -25,6 +26,7 @@ class GamesController < ApplicationController
       @result = "Congratulations! #{input} is a valid English word!"
     end
 
+    # get time score using Time.parse to parse a string to time object
     @time = Time.now - Time.parse(params[:time])
   end
 end

@@ -10,6 +10,7 @@
 <h2>Enter the longest the word you can find</h2>
 <form action="/score" method="POST">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <!-- pass time, words value in hidden input -->
   <input type="hidden" name="time" value="<%= @time %>">
   <input type="hidden" name="words" value="<%= @words.join %>">
   <input type="text" name="input">
