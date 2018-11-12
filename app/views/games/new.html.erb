@@ -1,0 +1,17 @@
+<h1>New Game</h1>
+<p>
+  <% @words.each do |word| %>
+    <%= word %>
+  <% end %>
+</p>
+
+<br>
+
+<h2>Enter the longest the word you can find</h2>
+<form action="/score" method="POST">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <input type="hidden" name="time" value="<%= @time %>">
+  <input type="hidden" name="words" value="<%= @words.join %>">
+  <input type="text" name="input">
+  <input type="submit">
+</form>
