@@ -8,6 +8,7 @@ class GamesController < ApplicationController
   end
 
   def score
+    # create a hash dictionary to store words frequency
     word_hash = Hash.new(0)
 
     # get words from params as string
