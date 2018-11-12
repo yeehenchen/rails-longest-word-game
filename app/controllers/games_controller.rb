@@ -18,6 +18,9 @@ class GamesController < ApplicationController
     input = params[:input]
     input.upcase.split(//).each { |w| word_hash[w] -= 1 }
 
+    # get time score using Time.parse to parse a string to time object
+    @time = Time.now - Time.parse(params[:time])
+    @score = 0
     result = JSON.parse(open("https://wagon-dictionary.herokuapp.com/#{input}").read)
     if !word_hash.values.all? { |v| v >= 0 }
       @result = "Sorry but #{input} can't be built out of #{words.split(//).join(',')}"
@@ -25,9 +28,9 @@ class GamesController < ApplicationController
       @result = "Sorry but #{input} does not seem to be a valid English word"
     else
       @result = "Congratulations! #{input} is a valid English word!"
+      @score = input.split(//).length * 10 - @time.floor(2)
     end
 
-    # get time score using Time.parse to parse a string to time object
-    @time = Time.now - Time.parse(params[:time])
+    session[:user_score] << @score
   end
 end

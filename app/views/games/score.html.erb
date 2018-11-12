@@ -2,7 +2,9 @@
 
 <p><%= @result %></p>
 <p>Time used : <%= @time.floor(2) %></p>
-
+<p>Score : <%= @score %></p>
+<br>
+<p><%= session[:user_score].join(',') %></p>
 <br>
 
 <%= link_to "Play again", new_path %>
